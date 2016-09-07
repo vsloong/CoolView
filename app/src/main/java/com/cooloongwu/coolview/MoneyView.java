@@ -27,10 +27,8 @@ public class MoneyView extends View {
     private float textIntegerHeight;
 
     private float textDotWidth;
-    private float textDotHeight;
 
     private float textDecimalWidth;
-    private float textDecimalHeight;
 
     public MoneyView(Context context) {
         super(context);
@@ -102,15 +100,11 @@ public class MoneyView extends View {
 
         textIntegerWidth = textIntegerPaint.measureText("200");
         Paint.FontMetrics integerFontMetrics = textIntegerPaint.getFontMetrics();
-        textIntegerHeight = integerFontMetrics.bottom;
+        textIntegerHeight = integerFontMetrics.bottom + integerFontMetrics.top;
 
         textDotWidth = textDotPaint.measureText(".");
-        Paint.FontMetrics dotFontMetrics = textDotPaint.getFontMetrics();
-        textDotHeight = dotFontMetrics.bottom;
 
         textDecimalWidth = textDecimalPaint.measureText("36");
-        Paint.FontMetrics decimalFontMetrics = textDecimalPaint.getFontMetrics();
-        textDecimalHeight = decimalFontMetrics.bottom;
     }
 
     @Override
@@ -128,18 +122,18 @@ public class MoneyView extends View {
 
         // Draw the text.
         canvas.drawText("200",
-                0,
-                100,
+                (contentWidth - textIntegerWidth - textDotWidth - textDecimalWidth) / 2,
+                (contentHeight - textIntegerHeight) / 2,
                 textIntegerPaint);
 
         canvas.drawText(".",
-                textIntegerWidth,
-                100,
+                (contentWidth - textIntegerWidth - textDotWidth - textDecimalWidth) / 2 + textIntegerWidth,
+                (contentHeight - textIntegerHeight) / 2,
                 textDotPaint);
 
         canvas.drawText("36",
-                textIntegerWidth + textDotWidth,
-                100,
+                (contentWidth - textIntegerWidth - textDotWidth - textDecimalWidth) / 2 + textIntegerWidth + textDotWidth,
+                (contentHeight - textIntegerHeight) / 2,
                 textDecimalPaint);
 
     }
