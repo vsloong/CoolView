@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.text.DecimalFormat;
@@ -17,8 +16,7 @@ import java.text.DecimalFormat;
  */
 public class MoneyView extends View {
 
-    private double money = 0;
-    private int moneyColor = Color.RED;
+    private int moneyColor = Color.WHITE;
     private float moneyIntegerDimension = 0;
     private float moneyDotDimension = 0;
     private float moneyDecimalDimension = 0;
@@ -32,38 +30,38 @@ public class MoneyView extends View {
     private float textDotWidth;
     private float textDecimalWidth;
 
-    private String moneyInteger = "200";    //钱的整数部分
-    private String moneyDecimal = "05";    //钱的小数部分
+    private String moneyInteger = "0";    //the integer part of money, The default is 0
+    private String moneyDecimal = "0";    //the decimal part of money, The default is 0
 
     public void setMoney(double money) {
-        this.money = money;
-
-        //格式化为XX.XX类型的字符串，会进行四舍五入
+        //formatted as a string type like XX.XX, will be rounded off
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         String temp = decimalFormat.format(money);
-        Log.e("格式化后的数字", temp);
 
+        //get the integer part
         moneyInteger = String.valueOf((int) money);
-        moneyDecimal = "23";
+
+        //get the decimal part
+        moneyDecimal = temp.substring(temp.length() - 2, temp.length());
+
+        // Update TextPaint and text measurements from attributes
+        invalidateTextPaintAndMeasurements();
     }
 
     //未使用XML布局调用一个参数的
     public MoneyView(Context context) {
         super(context);
-        Log.e("调用了", "带一个参数的");
         init(null, 0);
     }
 
     //使用了XML布局调用两个参数的
     public MoneyView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.e("调用了", "带二个参数的");
         init(attrs, 0);
     }
 
     public MoneyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        Log.e("调用了", "带三个参数的");
         init(attrs, defStyle);
     }
 
@@ -103,11 +101,11 @@ public class MoneyView extends View {
         textDecimalPaint = new TextPaint();
         textDecimalPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         textDecimalPaint.setTextAlign(Paint.Align.LEFT);
-
-        // Update TextPaint and text measurements from attributes
-        invalidateTextPaintAndMeasurements();
     }
 
+    /**
+     * Update TextPaint and text measurements from attributes
+     */
     private void invalidateTextPaintAndMeasurements() {
         textIntegerPaint.setTextSize(moneyIntegerDimension);
         textIntegerPaint.setColor(moneyColor);
@@ -120,21 +118,17 @@ public class MoneyView extends View {
 
         //测量整数部分的宽度跟高度
         textIntegerWidth = textIntegerPaint.measureText(moneyInteger);
-        Log.e("整数部分的宽度", "" + textIntegerWidth);
         Paint.FontMetrics integerFontMetrics = textIntegerPaint.getFontMetrics();
         textIntegerHeight = integerFontMetrics.bottom + integerFontMetrics.top;
 
         //测量“.”和小数部分的宽度
         textDotWidth = textDotPaint.measureText(".");
-        Log.e("点部分的宽度", "" + textDotWidth);
         textDecimalWidth = textDecimalPaint.measureText(moneyDecimal);
-        Log.e("小数部分的宽度", "" + textDecimalWidth);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.e("调用了", "onDraw()");
         // allocations per draw cycle.
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
