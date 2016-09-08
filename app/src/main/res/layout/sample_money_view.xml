@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <com.cooloongwu.coolview.MoneyView
+        android:id="@+id/money_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#e6e6e6"
-        app:moneyColor="@color/colorAccent"
+        android:layout_height="180dp"
+        android:background="@color/colorPrimary"
+        app:moneyColor="@android:color/white"
         app:moneyDecimalDimension="24sp"
         app:moneyDotDimension="32sp"
-        app:moneyFloat="100.23"
         app:moneyIntegerDimension="48sp" />
 
 </FrameLayout>

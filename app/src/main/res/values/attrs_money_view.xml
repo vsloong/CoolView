@@ -1,6 +1,5 @@
 <resources>
     <declare-styleable name="MoneyView">
-        <attr name="moneyFloat" format="float" />
         <attr name="moneyDotDimension" format="dimension" />
         <attr name="moneyIntegerDimension" format="dimension" />
         <attr name="moneyDecimalDimension" format="dimension" />
