@@ -9,7 +9,8 @@
 
 ### 1. MoneyView
 MoneyView是一个金钱类的视图，整数部分字体大，小数部分字体小，如下所示：
-![image](./pictures/picture1.png)
+
+![image](./pictures/money_view.jpg)
 
 ####使用方法
 布局中使用示例：
@@ -32,7 +33,6 @@ java中使用示例：
     moneyView.setMoney(1560.);
 ```
 
-
 特殊值说明：
 > * 当setMoney(.3)，  显示0.30
 > * 当setMoney(.301)，显示0.30
@@ -40,9 +40,23 @@ java中使用示例：
 > * 当setMoney(11)，  显示11.00
 > * 当setMoney(11.)， 显示11.00
 
+### 2. OlympicRingsView
+OlympicRingsView是一个奥运五环的视图，如下所示：
+
+![image](./pictures/olympic_rings_view.jpg)
+
+####使用方法
+布局中直接使用：
+```
+    <com.cooloongwu.coolview.OlympicRingsView
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+```
+
+
+
 作者 [@CooLoongWu][2]  
 2016 年 09月 08日 
-
 
 [1]: https://cooloongwu.github.io/
 [2]: http://blog.csdn.net/u010976213

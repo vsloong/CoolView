@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.cooloongwu.coolview.MainActivity">
 
-    <include layout="@layout/sample_money_view" />
-</RelativeLayout>
+    <com.cooloongwu.coolview.MoneyView
+        android:id="@+id/money_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary"
+        app:moneyColor="@android:color/white"
+        app:moneyDecimalDimension="24sp"
+        app:moneyDotDimension="32sp"
+        app:moneyIntegerDimension="48sp" />
+
+    <com.cooloongwu.coolview.OlympicRingsView
+        android:id="@+id/olympic_rings_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+</LinearLayout>

@@ -1,7 +1,7 @@
 package com.cooloongwu.coolview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,5 +17,8 @@ public class MainActivity extends AppCompatActivity {
         MoneyView moneyView = (MoneyView) findViewById(R.id.money_view);
         //double类型，可以是“.3”、“.223”、“11”、“11.”，注意小数点2位后会进行五舍六入
         moneyView.setMoney(11);
+
     }
+
+
 }
