@@ -7,12 +7,12 @@
 > * 方便的集成、使用某些View
 > * 参考代码并封装成您自己的视图
 
-### 1. MoneyView
+## 1. MoneyView
 MoneyView是一个金钱类的视图，整数部分字体大，小数部分字体小，如下所示：
 
 ![image](./pictures/money_view.jpg)
 
-####使用方法
+###使用方法
 布局中使用示例：
 ```
     <com.cooloongwu.coolview.MoneyView
@@ -40,12 +40,12 @@ java中使用示例：
 > * 当setMoney(11)，  显示11.00
 > * 当setMoney(11.)， 显示11.00
 
-### 2. OlympicRingsView
+## 2. OlympicRingsView
 OlympicRingsView是一个奥运五环的视图，如下所示：
 
 ![image](./pictures/olympic_rings_view.jpg)
 
-####使用方法
+###使用方法
 布局中直接使用：
 ```
     <com.cooloongwu.coolview.OlympicRingsView
@@ -53,9 +53,29 @@ OlympicRingsView是一个奥运五环的视图，如下所示：
         android:layout_height="200dp" />
 ```
 
+##License
 
+The MIT License (MIT)
 
-作者 [@CooLoongWu][2]  
+Copyright (c) 2016 [@CooLoongWu][2]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 2016 年 09月 08日 
 
 [1]: https://cooloongwu.github.io/
