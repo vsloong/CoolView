@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.cooloongwu.coolview.OlympicRingsView
+    <com.cooloongwu.coolview.view.OlympicRingsView
         android:id="@+id/olympic_rings_view"
         android:layout_width="match_parent"
         android:layout_height="200dp" />

@@ -15,7 +15,7 @@ MoneyView是一个金钱类的视图，整数部分字体大，小数部分字�
 ###使用方法
 布局中使用示例：
 ```
-    <com.cooloongwu.coolview.MoneyView
+    <com.cooloongwu.coolview.view.MoneyView
         android:id="@+id/money_view"
         android:layout_width="match_parent"
         android:layout_height="180dp"
@@ -48,7 +48,7 @@ OlympicRingsView是一个奥运五环的视图，如下所示：
 ###使用方法
 布局中直接使用：
 ```
-    <com.cooloongwu.coolview.OlympicRingsView
+    <com.cooloongwu.coolview.view.OlympicRingsView
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 ```

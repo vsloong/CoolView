@@ -1,4 +1,4 @@
-package com.cooloongwu.coolview;
+package com.cooloongwu.coolview.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

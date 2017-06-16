@@ -2,6 +2,12 @@ package com.cooloongwu.coolview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.widget.ImageView;
+
+import com.github.florent37.expectanim.ExpectAnim;
+
+import static com.github.florent37.expectanim.core.Expectations.outOfScreen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +20,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        MoneyView moneyView = (MoneyView) findViewById(R.id.money_view);
-        //double类型，可以是“.3”、“.223”、“11”、“11.”，注意小数点2位后会进行五舍六入
-        moneyView.setMoney(11);
+        ImageView img = (ImageView) findViewById(R.id.img);
+
+        new ExpectAnim().expect(img)
+                .toBe(outOfScreen(Gravity.BOTTOM))
+                .toAnimation()
+                .setDuration(2000)
+                .start();
 
     }
 

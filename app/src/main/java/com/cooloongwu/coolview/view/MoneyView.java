@@ -1,4 +1,4 @@
-package com.cooloongwu.coolview;
+package com.cooloongwu.coolview.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.cooloongwu.coolview.R;
 
 import java.text.DecimalFormat;
 
