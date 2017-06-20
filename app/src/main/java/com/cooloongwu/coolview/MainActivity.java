@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.cooloongwu.coolview.anim.Anim;
+import com.cooloongwu.coolview.anim.AnimAction;
 import com.github.florent37.expectanim.ExpectAnim;
 import com.squareup.picasso.Picasso;
 
@@ -20,27 +21,34 @@ public class MainActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
 
-        initViews();
-
-        test();
+        testExpectAnim();
+        testAnim();
+        //testPicasso();
     }
 
-    private void initViews() {
+    private void testExpectAnim() {
         new ExpectAnim().expect(img)
                 .toBe(bottomOfParent())
                 .toAnimation()
-                .setDuration(2000)
+                .setDuration(1000)
                 .start();
     }
 
 
-    private void test() {
-        Anim.Builder.into(img)
-                .build()
-                .showSomething();
+    private void testAnim() {
+        Anim
+                .with(AnimAction.Test)
+                .into(img)
+                .setDuration(2000)
+                .setRepeat(2)
+                .start();
 
+    }
+
+    private void testPicasso() {
         Picasso.with(this)
                 .load("hhh")
+                .error(R.mipmap.avatar)
                 .into(img);
     }
 
