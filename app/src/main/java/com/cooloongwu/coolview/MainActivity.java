@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
 
-        testExpectAnim();
+        //testExpectAnim();
         testAnim();
         //testPicasso();
     }
@@ -36,11 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void testAnim() {
-        Anim
-                .with(AnimAction.Test)
+        Anim.with(AnimAction.Test2)
                 .into(img)
                 .setDuration(2000)
-                .setRepeat(2)
+                .setRepeat(0)
                 .start();
 
     }
@@ -50,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 .load("hhh")
                 .error(R.mipmap.avatar)
                 .into(img);
+
     }
 
 }

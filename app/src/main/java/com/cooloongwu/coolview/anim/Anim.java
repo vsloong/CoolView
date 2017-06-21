@@ -12,15 +12,7 @@ public class Anim {
 
     private static final long DURATION = 1000;
     private static final long NO_DELAY = 0;
-    public static final int INFINITE = -1;
-    public static final float CENTER_PIVOT = Float.MAX_VALUE;
-
-    private long duration;
-    private long delay;
-    private boolean repeat;
-    private long repeatTimes;
-    private float pivotX, pivotY;
-    private View target;
+    private static final int INFINITE = -1;
 
     /**
      * 装载动画效果
@@ -32,38 +24,32 @@ public class Anim {
         return new AnimCreator(action);
     }
 
-    private Anim(AnimCreator animCreator) {
-        duration = animCreator.duration;
-        delay = animCreator.delay;
-        repeat = animCreator.repeat;
-        repeatTimes = animCreator.repeatTimes;
-        pivotX = animCreator.pivotX;
-        pivotY = animCreator.pivotY;
-        target = animCreator.target;
+    private Anim() {
     }
 
 
     public static class AnimCreator {
         private long duration = DURATION;
-
         private long delay = NO_DELAY;
-        private boolean repeat = false;
+        private boolean isRepeat = false;
         private long repeatTimes = 0;
-        private float pivotX = Anim.CENTER_PIVOT, pivotY = Anim.CENTER_PIVOT;
-        private View target;
+        private View targetView;
+
+        private AnimAction action;
 
         AnimCreator(AnimAction action) {
-            Log.e("AnimCreator", "构造");
+            this.action = action;
+            Log.e("AnimCreator", "action：" + action.toString());
         }
 
         /**
          * 设置动画的目标视图
          *
-         * @param target 目标视图
+         * @param targetView 目标视图
          * @return AnimCreator
          */
-        public AnimCreator into(View target) {
-            this.target = target;
+        public AnimCreator into(View targetView) {
+            this.targetView = targetView;
             Log.e("AnimCreator", "into()");
             return this;
         }
@@ -82,26 +68,29 @@ public class Anim {
 
         /**
          * 动画立即开始
-         *
-         * @return AnimCreator
          */
-        public AnimCreator start() {
+        public void start() {
             this.delay = 0;
             Log.e("AnimCreator", "start()");
-            return this;
+
+            targetView.setAnimation(action.getAnimationSet((int) repeatTimes, duration));
         }
 
-        /**
-         * 动画延迟开始
-         *
-         * @param delay 延迟时间
-         * @return AnimCreator
-         */
-        public AnimCreator startDelay(long delay) {
-            this.delay = delay;
-            Log.e("AnimCreator", "start(+" + delay + ")");
-            return this;
-        }
+//        /**
+//         * 动画延迟开始
+//         *
+//         * @param delay 延迟时间
+//         */
+//        public void startDelay(long delay) {
+//            Log.e("AnimCreator", "start(" + delay + ")");
+//            new Handler().postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Log.e("AnimCreator", "new Handler().postDelayed()");
+//                    targetView.setAnimation(action.getAnimationSet((int) repeatTimes, duration));
+//                }
+//            }, delay);
+//        }
 
 
         /**
@@ -115,9 +104,10 @@ public class Anim {
             if (times < INFINITE) {
                 throw new RuntimeException("Can not be less than -1, -1 is infinite loop");
             }
-            repeat = times != 0;
+            isRepeat = times != 0;
             repeatTimes = times;
             return this;
         }
+
     }
 }
