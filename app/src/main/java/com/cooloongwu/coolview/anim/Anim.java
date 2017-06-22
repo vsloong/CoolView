@@ -2,6 +2,7 @@ package com.cooloongwu.coolview.anim;
 
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationSet;
 
 /**
  * 控制动画的类
@@ -20,7 +21,8 @@ public class Anim {
      * @param action 动画效果
      * @return AnimCreator
      */
-    public static AnimCreator with(AnimAction action) {
+    public static AnimCreator with(AnimAction... action) {
+
         return new AnimCreator(action);
     }
 
@@ -35,11 +37,13 @@ public class Anim {
         private long repeatTimes = 0;
         private View targetView;
 
-        private AnimAction action;
+        private AnimAction[] actions;
 
-        AnimCreator(AnimAction action) {
-            this.action = action;
-            Log.e("AnimCreator", "action：" + action.toString());
+        AnimCreator(AnimAction[] actions) {
+            this.actions = actions;
+            for (AnimAction action : actions) {
+                Log.e("AnimCreator", "action：" + action.toString());
+            }
         }
 
         /**
@@ -72,8 +76,11 @@ public class Anim {
         public void start() {
             this.delay = 0;
             Log.e("AnimCreator", "start()");
-
-            targetView.setAnimation(action.getAnimationSet((int) repeatTimes, duration));
+            AnimationSet animationSet = new AnimationSet(true);
+            for (AnimAction action : actions) {
+                //animationSet.addAnimation(action);
+            }
+            targetView.setAnimation(animationSet);
         }
 
 //        /**
