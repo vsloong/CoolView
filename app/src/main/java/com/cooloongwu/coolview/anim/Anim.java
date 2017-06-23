@@ -2,6 +2,7 @@ package com.cooloongwu.coolview.anim;
 
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 
 /**
@@ -21,8 +22,7 @@ public class Anim {
      * @param action 动画效果
      * @return AnimCreator
      */
-    public static AnimCreator with(AnimAction... action) {
-
+    public static AnimCreator with(AnimAction[]... action) {
         return new AnimCreator(action);
     }
 
@@ -37,13 +37,14 @@ public class Anim {
         private long repeatTimes = 0;
         private View targetView;
 
-        private AnimAction[] actions;
+        private AnimAction[][] animActionGroup;
 
-        AnimCreator(AnimAction[] actions) {
-            this.actions = actions;
-            for (AnimAction action : actions) {
-                Log.e("AnimCreator", "action：" + action.toString());
-            }
+        AnimCreator(AnimAction[]... animActionGroup) {
+            this.animActionGroup = animActionGroup;
+            for (AnimAction[] animActions : animActionGroup)
+                for (AnimAction animAction : animActions) {
+                    Log.e("AnimCreator", "action：" + animAction.toString());
+                }
         }
 
         /**
@@ -71,15 +72,59 @@ public class Anim {
         }
 
         /**
+         * 动画重复次数
+         *
+         * @param times 次数
+         * @return AnimCreator
+         */
+        public AnimCreator setRepeat(int times) {
+            Log.e("AnimCreator", "setRepeat(" + times + ")");
+            if (times < INFINITE) {
+                throw new RuntimeException("Can not be less than -1, -1 is infinite loop");
+            }
+            isRepeat = times != 0;
+            repeatTimes = times;
+            return this;
+        }
+
+
+        /**
          * 动画立即开始
          */
         public void start() {
             this.delay = 0;
             Log.e("AnimCreator", "start()");
+            run();
+        }
+
+        int temp = 0;
+
+        private void run() {
+            if (temp == animActionGroup.length) return;
+            AnimAction[] animActions = animActionGroup[temp];
             AnimationSet animationSet = new AnimationSet(true);
-            for (AnimAction action : actions) {
-                //animationSet.addAnimation(action);
+            for (AnimAction animAction : animActions) {
+                animationSet.addAnimation(animAction.getAnimation((int) repeatTimes, duration));
             }
+            animationSet.setFillAfter(true);
+            animationSet.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    Log.e("AnimCreator", "onAnimationStart()" + System.currentTimeMillis());
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("AnimCreator", "onAnimationEnd()" + System.currentTimeMillis());
+                    temp++;
+                    run();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    Log.e("AnimCreator", "onAnimationRepeat()");
+                }
+            });
             targetView.setAnimation(animationSet);
         }
 
@@ -99,22 +144,6 @@ public class Anim {
 //            }, delay);
 //        }
 
-
-        /**
-         * 动画重复次数
-         *
-         * @param times 次数
-         * @return AnimCreator
-         */
-        public AnimCreator setRepeat(int times) {
-            Log.e("AnimCreator", "setRepeat(" + times + ")");
-            if (times < INFINITE) {
-                throw new RuntimeException("Can not be less than -1, -1 is infinite loop");
-            }
-            isRepeat = times != 0;
-            repeatTimes = times;
-            return this;
-        }
 
     }
 }

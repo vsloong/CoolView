@@ -9,9 +9,10 @@ import android.view.animation.TranslateAnimation;
 
 public class Test1Action {
 
-    public static Animation animation(int repeatTimes, long duration) {
-        TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 100);
+    public static Animation animation(int repeatCount, long duration) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0, 0, 0, 200);
         translateAnimation.setDuration(duration);
+        translateAnimation.setRepeatCount(repeatCount);
         translateAnimation.setFillAfter(true);
 
         return translateAnimation;
