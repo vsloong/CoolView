@@ -1,9 +1,8 @@
 package com.cooloongwu.coolview.anim;
 
-import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 
-import com.cooloongwu.coolview.anim.actions.Test1Action;
-import com.cooloongwu.coolview.anim.actions.Test2Action;
+import com.cooloongwu.coolview.anim.actions.TestAction;
 
 /**
  * 动画描述
@@ -14,17 +13,17 @@ public enum AnimAction {
 
     Test1 {
         @Override
-        public Animation getAnimation(int repeats, long duration) {
-            return Test1Action.animation(repeats, duration);
+        public AnimationSet getAnimation(int repeats, long duration) {
+            return TestAction.animationSet(repeats, duration);
         }
     },
 
     Test2 {
         @Override
-        public Animation getAnimation(int repeats, long duration) {
-            return Test2Action.animation(repeats, duration);
+        public AnimationSet getAnimation(int repeats, long duration) {
+            return TestAction.animationSet(repeats, duration);
         }
     };
 
-    public abstract Animation getAnimation(int repeats, long duration);
+    public abstract AnimationSet getAnimation(int repeats, long duration);
 }

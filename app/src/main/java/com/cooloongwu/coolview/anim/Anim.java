@@ -2,8 +2,6 @@ package com.cooloongwu.coolview.anim;
 
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 
 /**
  * 控制动画的类
@@ -22,7 +20,7 @@ public class Anim {
      * @param action 动画效果
      * @return AnimCreator
      */
-    public static AnimCreator with(AnimAction[]... action) {
+    public static AnimCreator with(AnimAction... action) {
         return new AnimCreator(action);
     }
 
@@ -37,14 +35,14 @@ public class Anim {
         private long repeatTimes = 0;
         private View targetView;
 
-        private AnimAction[][] animActionGroup;
+        private AnimAction[] animActionGroup;
 
-        AnimCreator(AnimAction[]... animActionGroup) {
+        AnimCreator(AnimAction... animActionGroup) {
             this.animActionGroup = animActionGroup;
-            for (AnimAction[] animActions : animActionGroup)
-                for (AnimAction animAction : animActions) {
-                    Log.e("AnimCreator", "action：" + animAction.toString());
-                }
+//            for (AnimAction[] animActions : animActionGroup)
+//                for (AnimAction animAction : animActions) {
+//                    Log.e("AnimCreator", "action：" + animAction.toString());
+//                }
         }
 
         /**
@@ -100,33 +98,39 @@ public class Anim {
         int temp = 0;
 
         private void run() {
-            if (temp == animActionGroup.length) return;
-            AnimAction[] animActions = animActionGroup[temp];
-            AnimationSet animationSet = new AnimationSet(true);
-            for (AnimAction animAction : animActions) {
-                animationSet.addAnimation(animAction.getAnimation((int) repeatTimes, duration));
+            for (AnimAction animationSet : animActionGroup) {
+                targetView.setAnimation(animationSet.getAnimation((int) repeatTimes, duration));
             }
-            animationSet.setFillAfter(true);
-            animationSet.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    Log.e("AnimCreator", "onAnimationStart()" + System.currentTimeMillis());
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    Log.e("AnimCreator", "onAnimationEnd()" + System.currentTimeMillis());
-                    temp++;
-                    run();
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                    Log.e("AnimCreator", "onAnimationRepeat()");
-                }
-            });
-            targetView.setAnimation(animationSet);
         }
+
+//        private void run() {
+//            if (temp == animActionGroup.length) return;
+//            AnimAction[] animActions = animActionGroup[temp];
+//            AnimationSet animationSet = new AnimationSet(true);
+//            for (AnimAction animAction : animActions) {
+//                animationSet.addAnimation(animAction.getAnimation((int) repeatTimes, duration));
+//            }
+//            animationSet.setFillAfter(true);
+//            animationSet.setAnimationListener(new Animation.AnimationListener() {
+//                @Override
+//                public void onAnimationStart(Animation animation) {
+//                    Log.e("AnimCreator", "onAnimationStart()" + System.currentTimeMillis());
+//                }
+//
+//                @Override
+//                public void onAnimationEnd(Animation animation) {
+//                    Log.e("AnimCreator", "onAnimationEnd()" + System.currentTimeMillis());
+//                    temp++;
+//                    run();
+//                }
+//
+//                @Override
+//                public void onAnimationRepeat(Animation animation) {
+//                    Log.e("AnimCreator", "onAnimationRepeat()");
+//                }
+//            });
+//            targetView.setAnimation(animationSet);
+//        }
 
 //        /**
 //         * 动画延迟开始
