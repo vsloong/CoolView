@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void testAnim() {
-        Anim.with(AnimAction.Test2, AnimAction.Test1)
+        Anim.with(AnimAction.Test1, AnimAction.Test2)
                 .into(img)
-                .setDuration(200)
+                .setDuration(2000)
                 .setRepeat(0)
                 .start();
 

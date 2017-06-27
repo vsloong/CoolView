@@ -98,10 +98,18 @@ public class Anim {
         int temp = 0;
 
         private void run() {
-            for (AnimAction animationSet : animActionGroup) {
-                targetView.setAnimation(animationSet.getAnimation((int) repeatTimes, duration));
+            for (final AnimAction animationSet : animActionGroup) {
+                targetView.startAnimation(animationSet.getAnimation((int) repeatTimes, duration));
+                Log.e("AnimCreator", "run()");
+//                try {
+//                    Thread.sleep(duration + 200);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             }
+
         }
+    }
 
 //        private void run() {
 //            if (temp == animActionGroup.length) return;
@@ -149,5 +157,5 @@ public class Anim {
 //        }
 
 
-    }
 }
+

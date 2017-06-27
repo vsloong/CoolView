@@ -21,7 +21,7 @@ public enum AnimAction {
     Test2 {
         @Override
         public AnimationSet getAnimation(int repeats, long duration) {
-            return TestAction.animationSet(repeats, duration);
+            return TestAction.animationSet2(repeats, duration);
         }
     };
 
