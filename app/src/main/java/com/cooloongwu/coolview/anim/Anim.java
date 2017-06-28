@@ -2,6 +2,8 @@ package com.cooloongwu.coolview.anim;
 
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 
 /**
  * 控制动画的类
@@ -98,15 +100,27 @@ public class Anim {
         int temp = 0;
 
         private void run() {
-            for (final AnimAction animationSet : animActionGroup) {
-                targetView.startAnimation(animationSet.getAnimation((int) repeatTimes, duration));
-                Log.e("AnimCreator", "run()");
-//                try {
-//                    Thread.sleep(duration + 200);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-            }
+            if (temp == animActionGroup.length) return;
+            Log.e("AnimCreator", "run()");
+            AnimationSet animationSet = animActionGroup[temp].getAnimation((int) repeatTimes, duration);
+            targetView.startAnimation(animationSet);
+            animationSet.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    temp++;
+                    run();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
 
         }
     }
