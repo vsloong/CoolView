@@ -1,8 +1,6 @@
-package com.cooloongwu.coolview.anim;
+package com.cooloongwu.coolview.anim.actions;
 
 import android.view.animation.AnimationSet;
-
-import com.cooloongwu.coolview.anim.actions.TestAction;
 
 /**
  * 动画描述

@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.cooloongwu.coolview.anim.Anim;
-import com.cooloongwu.coolview.anim.AnimAction;
+import com.cooloongwu.coolview.anim.actions.AnimAction;
+import com.cooloongwu.coolview.anim.actions.MyAnimation;
 import com.github.florent37.expectanim.ExpectAnim;
 import com.squareup.picasso.Picasso;
 
@@ -36,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void testAnim() {
-        Anim.with(AnimAction.Test1, AnimAction.Test2)
+        Anim.with(MyAnimation.getAnimation(0, 2000),
+                AnimAction.Test2.getAnimation(0, 2000))
                 .into(img)
-                .setDuration(2000)
-                .setRepeat(0)
                 .start();
 
     }

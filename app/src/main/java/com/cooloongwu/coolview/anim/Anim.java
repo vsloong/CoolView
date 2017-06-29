@@ -19,11 +19,11 @@ public class Anim {
     /**
      * 装载动画效果
      *
-     * @param action 动画效果
+     * @param animationSets 动画效果
      * @return AnimCreator
      */
-    public static AnimCreator with(AnimAction... action) {
-        return new AnimCreator(action);
+    public static AnimCreator with(AnimationSet... animationSets) {
+        return new AnimCreator(animationSets);
     }
 
     private Anim() {
@@ -37,10 +37,10 @@ public class Anim {
         private long repeatTimes = 0;
         private View targetView;
 
-        private AnimAction[] animActionGroup;
+        private AnimationSet[] animationSets;
 
-        AnimCreator(AnimAction... animActionGroup) {
-            this.animActionGroup = animActionGroup;
+        AnimCreator(AnimationSet... animationSets) {
+            this.animationSets = animationSets;
 //            for (AnimAction[] animActions : animActionGroup)
 //                for (AnimAction animAction : animActions) {
 //                    Log.e("AnimCreator", "action：" + animAction.toString());
@@ -59,33 +59,33 @@ public class Anim {
             return this;
         }
 
-        /**
-         * 设置动画持续的时间
-         *
-         * @param duration 持续的时间
-         * @return AnimCreator
-         */
-        public AnimCreator setDuration(long duration) {
-            this.duration = duration;
-            Log.e("AnimCreator", "setDuration(" + duration + ")");
-            return this;
-        }
-
-        /**
-         * 动画重复次数
-         *
-         * @param times 次数
-         * @return AnimCreator
-         */
-        public AnimCreator setRepeat(int times) {
-            Log.e("AnimCreator", "setRepeat(" + times + ")");
-            if (times < INFINITE) {
-                throw new RuntimeException("Can not be less than -1, -1 is infinite loop");
-            }
-            isRepeat = times != 0;
-            repeatTimes = times;
-            return this;
-        }
+//        /**
+//         * 设置动画持续的时间
+//         *
+//         * @param duration 持续的时间
+//         * @return AnimCreator
+//         */
+//        public AnimCreator setDuration(long duration) {
+//            this.duration = duration;
+//            Log.e("AnimCreator", "setDuration(" + duration + ")");
+//            return this;
+//        }
+//
+//        /**
+//         * 动画重复次数
+//         *
+//         * @param times 次数
+//         * @return AnimCreator
+//         */
+//        public AnimCreator setRepeat(int times) {
+//            Log.e("AnimCreator", "setRepeat(" + times + ")");
+//            if (times < INFINITE) {
+//                throw new RuntimeException("Can not be less than -1, -1 is infinite loop");
+//            }
+//            isRepeat = times != 0;
+//            repeatTimes = times;
+//            return this;
+//        }
 
 
         /**
@@ -100,9 +100,9 @@ public class Anim {
         int temp = 0;
 
         private void run() {
-            if (temp == animActionGroup.length) return;
+            if (temp == animationSets.length) return;
             Log.e("AnimCreator", "run()");
-            AnimationSet animationSet = animActionGroup[temp].getAnimation((int) repeatTimes, duration);
+            AnimationSet animationSet = animationSets[temp];
             targetView.startAnimation(animationSet);
             animationSet.setAnimationListener(new Animation.AnimationListener() {
                 @Override
