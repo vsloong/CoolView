@@ -1,12 +1,19 @@
 package com.cooloongwu.coolview;
 
+import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.cooloongwu.coolview.anim.Anim;
 import com.cooloongwu.coolview.anim.actions.AnimAction;
 import com.cooloongwu.coolview.anim.actions.MyAnimation;
+import com.cooloongwu.coolview.view.TestView;
 import com.github.florent37.expectanim.ExpectAnim;
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
 
+        TestView view = (TestView) findViewById(R.id.test);
+
+        ObjectAnimator anim = ObjectAnimator.ofFloat(view, "fraction", 0, 500, 200);
+        anim.setDuration(2000);
+        anim.start();
+
         //testExpectAnim();
-        testAnim();
+        //testAnim();
         //testPicasso();
+        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goNext();
+            }
+        });
     }
 
     private void testExpectAnim() {
@@ -50,6 +69,19 @@ public class MainActivity extends AppCompatActivity {
                 .error(R.mipmap.avatar)
                 .into(img);
 
+    }
+
+    private void goNext() {
+        //View img = (ImageView) findViewById(R.id.img);
+
+        View textView = findViewById(R.id.text);
+        Intent intent = new Intent(this, NextActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this,
+                    Pair.create((View) img, "img"),
+                    Pair.create(textView, "text"))
+                    .toBundle());
+        }
     }
 
 }
