@@ -39,9 +39,8 @@ public class AnimationBuilder {
     }
 
     private void property(String propertyName, float... values) {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(null, propertyName, values);//这里的null有问题
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(views, propertyName, values);//这里的null有问题
         applyAnimatorProperties(objectAnimator);
-
     }
 
     List<ValueAnimator> getAnimators() {
@@ -84,5 +83,10 @@ public class AnimationBuilder {
     public AnimationBuilder rotation(float... values) {
         property("rotation", values);
         return this;
+    }
+
+    public MyAnimator start() {
+        animator.start();
+        return animator;
     }
 }

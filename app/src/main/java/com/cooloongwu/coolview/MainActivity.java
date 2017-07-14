@@ -1,6 +1,5 @@
 package com.cooloongwu.coolview;
 
-import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -11,9 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.cooloongwu.coolview.anim.Anim;
+import com.cooloongwu.coolview.anim.MyAnimator;
 import com.cooloongwu.coolview.anim.actions.AnimAction;
 import com.cooloongwu.coolview.anim.actions.MyAnimation;
-import com.cooloongwu.coolview.view.TestView;
 import com.github.florent37.expectanim.ExpectAnim;
 import com.squareup.picasso.Picasso;
 
@@ -29,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
 
-        TestView view = (TestView) findViewById(R.id.test);
-
-        ObjectAnimator anim = ObjectAnimator.ofFloat(view, "fraction", 0, 500, 200);
-        anim.setDuration(2000);
-        anim.start();
+//        TestView view = (TestView) findViewById(R.id.test);
+//
+//        ObjectAnimator anim = ObjectAnimator.ofFloat(view, "fraction", 0, 500, 200);
+//        anim.setDuration(2000);
+//        anim.start();
 
         //testExpectAnim();
         //testAnim();
@@ -44,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 goNext();
             }
         });
+
+
+        MyAnimator.animate(img)
+                .rotation(0, 500, 200)
+                .start();
+
     }
 
     private void testExpectAnim() {
