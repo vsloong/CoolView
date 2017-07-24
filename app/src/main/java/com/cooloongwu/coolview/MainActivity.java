@@ -2,6 +2,8 @@ package com.cooloongwu.coolview;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         img = (ImageView) findViewById(R.id.img);
+
+        ImageView imgBtn = (ImageView) findViewById(R.id.imgBtn);
+        Drawable drawable = imgBtn.getDrawable();
+        ((Animatable) drawable).start();
 
 //        TestView view = (TestView) findViewById(R.id.test);
 //
