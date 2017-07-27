@@ -1,6 +1,5 @@
 # 自定义视图类
 
-可能每位开发者都需要更便捷、更高效的视图类来增加开发效率，并将其中承载的知识及价值传播给他人，
 **CoolView** 是我自己在开发中所遇到的需要自定义视图的类，并在逐步添加完善。 
 您可以使用 CoolView：
 
@@ -12,7 +11,7 @@ MoneyView是一个金钱类的视图，整数部分字体大，小数部分字�
 
 ![image](./pictures/money_view.jpg)
 
-###使用方法
+### 使用方法
 布局中使用示例：
 ```
     <com.cooloongwu.coolview.view.MoneyView
@@ -45,7 +44,7 @@ OlympicRingsView是一个奥运五环的视图，如下所示：
 
 ![image](./pictures/olympic_rings_view.jpg)
 
-###使用方法
+### 使用方法
 布局中直接使用：
 ```
     <com.cooloongwu.coolview.view.OlympicRingsView
@@ -54,7 +53,7 @@ OlympicRingsView是一个奥运五环的视图，如下所示：
 ```
 
 
-##License
+## License
 ```
 Copyright 2015 CooLoongWu
 
