@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
-    android:drawable="@drawable/state_end">
+    android:drawable="@drawable/item_state_end">
 
-    <target
-        android:name="groupHeart"
-        android:animation="s">
+    <target android:name="groupEnd">
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:duration="1000"
@@ -15,9 +13,7 @@
         </aapt:attr>
     </target>
 
-    <target
-        android:name="heart"
-        android:animation="s">
+    <target android:name="end">
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:duration="1000"

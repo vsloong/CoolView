@@ -2,8 +2,6 @@ package com.cooloongwu.coolview;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,9 +28,19 @@ public class MainActivity extends AppCompatActivity {
 
         img = (ImageView) findViewById(R.id.img);
 
-        ImageView imgBtn = (ImageView) findViewById(R.id.imgBtn);
-        Drawable drawable = imgBtn.getDrawable();
-        ((Animatable) drawable).start();
+        final ImageView imgBtn = (ImageView) findViewById(R.id.imgBtn);
+//        Drawable drawable = imgBtn.getDrawable();
+//        ((Animatable) drawable).start();
+
+        final boolean[] isChecked = {false};
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isChecked[0] = !isChecked[0];
+                final int[] stateSet = {android.R.attr.state_checked * (isChecked[0] ? 1 : -1)};
+                imgBtn.setImageState(stateSet, true);
+            }
+        });
 
 //        TestView view = (TestView) findViewById(R.id.test);
 //
@@ -54,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         MyAnimator.animate(img)
                 .rotation(0, 500, 200)
                 .start();
+
 
     }
 

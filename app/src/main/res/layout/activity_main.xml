@@ -19,7 +19,7 @@
         android:id="@+id/imgBtn"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/animvectordrawable" />
+        android:src="@drawable/test" />
 
     <Button
         android:id="@+id/btn"
