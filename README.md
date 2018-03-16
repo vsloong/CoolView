@@ -9,7 +9,7 @@
 ## 1. MoneyView
 MoneyView是一个金钱类的视图，整数部分字体大，小数部分字体小，如下所示：
 
-![image](./pictures/money_view.jpg)
+![image](./img/money_view.jpg)
 
 ### 使用方法
 布局中使用示例：
@@ -42,7 +42,7 @@ java中使用示例：
 ## 2. OlympicRingsView
 OlympicRingsView是一个奥运五环的视图，如下所示：
 
-![image](./pictures/olympic_rings_view.jpg)
+![image](./img/olympic_rings_view.jpg)
 
 ### 使用方法
 布局中直接使用：
